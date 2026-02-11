@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Event Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="container">
+    <!-- Top Row: Two Boxes -->
+    <div class="top-row">
+      
+      <!-- Add New Event -->
+      <section id="box01">
+        <h1>Add New Event</h1>
+        <form id="ADD_EVENT_FORM">
+          <label for="eventName">Event Title :</label>
+          <input type="text" id="eventName" name="eventName" required>
+
+          <label for="eventDate">Event Date :</label>
+          <input type="date" id="eventDate" name="eventDate" required>
+
+          <label for="category">Category :</label>
+          <select id="category" name="category" required>
+            <option value="workshop">Workshop</option>
+            <option value="seminar">Seminar</option>
+            <option value="conference">Conference</option>
+            <option value="webinar">Webinar</option>
+          </select>
+
+          <label for="description">Description :</label>
+          <textarea id="description" name="description" required></textarea>
+
+          <button type="submit">Add Event</button>
+        </form>
+      </section>
+
+      <!-- My Events -->
+      <section id="box02">
+        <h1>My Events</h1>
+        <div id="eventsList">
+          <button id="clearEventsBtn">Clear All Events</button>
+          <button id="addsampleBtn">Add Sample Events</button>
+          <p id="message">No events yet.... <br><br> Add your first event !</p>
+        </div>
+      </section>
+    </div>
+
+    <!-- Bottom Row: DOM Demo -->
+    <section id="box03">
+      <h1>DOM Manipulation Demo</h1>
+      <p id="domMessage">You Pressed: Meta</p>
+    </section>
+  </div>
+</body>
+</html>
