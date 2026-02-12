@@ -1,85 +1,104 @@
-// Target the HTML elements like form, input fields, buttons
-const eventForm = document.getElementById("ADD_EVENT_FORM");
-const eventTitle = document.getElementById("eventName");
+const eventForm = document.getElementById("eventForm");
+const eventTitle = document.getElementById("eventTitle");
 const eventDate = document.getElementById("eventDate");
-const eventCategory = document.getElementById("category");
-const eventDescription = document.getElementById("description");
-const clearAllBtn = document.getElementById("clearEventsBtn");
-const addSampleBtn = document.getElementById("addsampleBtn");
-const eventContainer = document.getElementById("eventsList");
+const eventCategory = document.getElementById("eventCategory");
+const eventDescription = document.getElementById("eventDescription");
+const clearAllBtn = document.getElementById("clearAllBtn");
+const addSampleBtn = document.getElementById("addSampleBtn");
+const eventContainer = document.getElementById("eventContainer");
 
-// Take 2 sample events for Add sample event data
+
+
+//take 2 sample events for Add sample event data-----------------------------------------
+
+
 let sampleEvent = [
+
     {
-        title: "Web Dev",
-        date: "2026-04-06",
-        category: "Workshop",
-        description: "Introductory web development workshop"
+        title: "web dev",
+        date: "4-6-2026",
+        category: "workshop",
+        description: "ahgs h adg ihai dgjabds"
     },
 
+
     {
-        title: "Web Dev 2",
-        date: "2026-04-07",
-        category: "Conference",
-        description: "Advanced web development conference"
+        title: "web dev2",
+        date: "4-7-2026",
+        category: "conference",
+        description: "..." 
     }
 ];
 
-// Create event card which contains the user data and store it inside a div
+
+
+//Create event card which contains the user data ------------------------------------------
+
+
 function createEventCard(eventData) {
-    const card = document.createElement("div");
-    card.classList.add("event-card"); // optional styling class
-    card.innerHTML = `
-        <button class="delete-btn" style="background: white; border: none; cursor: pointer;">❌</button>
+    const eventCard = document.createElement("div");
+    eventCard.classList.add("event-card");
+    eventCard.innerHTML = `
         <h3>${eventData.title}</h3>
-        <div>${eventData.date}</div>
-        <span>${eventData.category}</span>
-        <p>${eventData.description}</p>
+        <p><strong>Date:</strong> ${eventData.date}</p>
+        <p><strong>Category:</strong> ${eventData.category}</p>
+        <p><strong>Description:</strong> ${eventData.description}</p>
     `;
-
-    // Delete button functionality
-    card.querySelector(".delete-btn").addEventListener("click", () => {
-        card.remove();
-        if (eventContainer.children.length === 3) { // only buttons + message left
-            document.getElementById("message").style.display = "block";
-        }
-    });
-
-    return card;
+    return eventCard;
 }
 
-// Add the created event and append inside the event container
+
+
+// addevent append -----------------------------------------------------------
+
+
 function addEvent(eventData) {
-    const message = document.getElementById("message");
-    if (message) message.style.display = "none"; // hide empty message
-    eventContainer.appendChild(createEventCard(eventData));
+    const emptyState = document.querySelector(".empty-state");
+    if (emptyState) {
+        emptyState.remove();
+    }
+    const eventCard = createEventCard(eventData);
+    eventContainer.appendChild(eventCard);
 }
 
-// Form handling using submit event
+
+
+
+//Add event -------------------------------------------------------------   
+
+
 eventForm.addEventListener("submit", (event) => {
     event.preventDefault();
-
     const eventData = {
         title: eventTitle.value,
         date: eventDate.value,
         category: eventCategory.value,
         description: eventDescription.value
     };
-
     addEvent(eventData);
-
-    // Clear form after submission
-    eventForm.reset();
 });
 
-// Clear all events
+eventContainer.addEventListener("click", (event) => {
+    const card = event.target.closest(".event-card");
+    if (card) {
+        card.remove();  
+        if (eventContainer.children.length === 0) {
+            eventContainer.innerHTML = "<div class='empty-state'>No events to display</div>";
+        }
+        
+    }
+});
+
+
+
+
+
+// clear All events button -------------------------------------------------------------    
+
+
 clearAllBtn.addEventListener("click", () => {
-    const cards = document.querySelectorAll(".event-card");
-    cards.forEach(card => card.remove());
-    document.getElementById("message").style.display = "block";
+    eventContainer.innerHTML = "<div class='empty-state'>No events to display</div>";
+
 });
 
-// Add sample events
-addSampleBtn.addEventListener("click", () => {
-    sampleEvent.forEach(ev => addEvent(ev));
-});
+
