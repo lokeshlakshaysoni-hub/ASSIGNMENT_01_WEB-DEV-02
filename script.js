@@ -16,6 +16,7 @@ let sampleEvent = [
         category: "Workshop",
         description: "Introductory web development workshop"
     },
+
     {
         title: "Web Dev 2",
         date: "2026-04-07",
@@ -29,7 +30,7 @@ function createEventCard(eventData) {
     const card = document.createElement("div");
     card.classList.add("event-card"); // optional styling class
     card.innerHTML = `
-        <button class="delete-btn">X</button>
+        <button class="delete-btn" style="background: white; border: none; cursor: pointer;">❌</button>
         <h3>${eventData.title}</h3>
         <div>${eventData.date}</div>
         <span>${eventData.category}</span>
