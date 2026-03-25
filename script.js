@@ -7,7 +7,7 @@
 
 
 
-// __________________________________________________________________________________________________________________________________________________________
+__________________________________________________________________________________________________________________________________________________________
 
 
 
@@ -17,7 +17,7 @@
 // }
 
 
-// __________________________________________________________________________________________________________________________________________________________
+__________________________________________________________________________________________________________________________________________________________
 
 
 
@@ -27,7 +27,7 @@
 // console.log(demo()); 
 
 
-// __________________________________________________________________________________________________________________________________________________________
+__________________________________________________________________________________________________________________________________________________________
 
 
 // async function fetchData(city) {
@@ -46,15 +46,15 @@
 
 
 
-// __________________________________________________________________________________________________________________________________________________________
+__________________________________________________________________________________________________________________________________________________________
 
 
 
-let history = [];
+let history = [];                            // Array bnadi history store krne ke liye 
 
 document.getElementById("searchBtn").addEventListener("click", getWeather);
 
-async function getWeather() {
+async function getWeather() {                                   // created async fnx. data fetch krne ke liye
   let city = document.getElementById("cityInput").value;
 
   if (city === "") {
@@ -62,17 +62,17 @@ async function getWeather() {
     return;
   }
 
-  let API_key = "14ac0ec299dff0bd71094539fe83cf5a";
+  let API_key = "14ac0ec299dff0bd71094539fe83cf5a";                       // my api key
 
   try {
     let response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_key}&units=metric`
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_key}&units=metric`                //  fetch request send ke liye http url
     );
 
-    let data = await response.json();
+    let data = await response.json();                                 // convert response to json data
 
     if (data.cod != 200) {
-      document.getElementById("weather").innerHTML = "City not found ❌";
+      document.getElementById("weather").innerHTML = "City not found ❌";                            
       return;
     }
 
@@ -88,13 +88,13 @@ async function getWeather() {
 
     showHistory();
 
-  } catch (error) {
+  } catch (error) {                     // catch used for error handling 
     console.log(error);
     document.getElementById("weather").innerHTML = "Error fetching data ❌";
   }
 }
 
-function showHistory() {
+function showHistory() {                                        // history array ko block me show krke ek button jisme city name innertext se button name set ho jayega
   let list = document.getElementById("history");
   list.innerHTML = "";
 
@@ -111,7 +111,7 @@ function showHistory() {
   }
 }
 
-function clearHistory() {
+function clearHistory() {                             // made a fnx. to clear history
   history = [];
   document.getElementById("history").innerHTML = "";
 }
